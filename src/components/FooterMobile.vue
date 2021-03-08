@@ -5,12 +5,10 @@
             <h6 class="footerText">806614 高雄市前鎮區成功二路25號4樓</h6>
             <h6 class="footerText">(07)338-1810</h6>
             <div class="languageChoose d-flex align-center">
-                <v-btn
-                color="transparent"
-                dark
-                small
-                depressed
-                >
+                <v-btn color="transparent"
+                        dark
+                        small
+                        depressed>
                 <v-icon>mdi-earth</v-icon>
                 <p class="currentLag ma-0 pl-1 pr-1">中文</p>                    
                 <v-icon>mdi-chevron-down</v-icon>
@@ -19,11 +17,11 @@
             <div class="webRules">
                 <v-dialog v-model="dialog" width="500">
                     <template v-slot:activator="{ on, attrs }">
-                        <v-btn color="transparent"
+                        <v-btn v-bind="attrs"
+                                v-on="on"
+                                color="transparent"
                                 dark
                                 small
-                                v-bind="attrs"
-                                v-on="on"
                                 depressed>
                             <v-icon>mdi-note-text-outline</v-icon>
                             <p class="ma-0 pl-1">網站規範</p>

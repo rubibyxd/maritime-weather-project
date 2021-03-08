@@ -21,9 +21,9 @@
                     <v-dialog v-model="dialog" width="500">
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn color="transparent"
-                                    dark
                                     v-bind="attrs"
                                     v-on="on"
+                                    dark
                                     depressed>
                                 <v-icon>mdi-note-text-outline</v-icon>
                                 <h4>網站規範</h4>
@@ -33,16 +33,10 @@
                             <v-card-title class="headline darken-2">
                             網站規範
                             </v-card-title>
-
                             <v-card-text>
-                                <!-- <div style="white-space: pre-line">
-                                    {{ rules }}
-                                </div> -->
                                 <div v-html="rules"></div>
                             </v-card-text>
-
                             <v-divider></v-divider>
-
                             <v-card-actions>
                             <v-spacer></v-spacer>
                             <v-btn color="blue darken-3"
@@ -57,36 +51,14 @@
                 </div>
             </div>
         </div>
-        <div class="navAlert" v-show="alert">
-            <div class="warningInfo">
-                <v-btn
-                color="transparent"
-                dark
-                depressed
-                class="warningBtn"
-                >
-                    <v-icon>mdi-alert</v-icon>
-                    <h4>颱風警報！</h4>
-                </v-btn>
-            </div>
-            <div class="warningInfo">
-                <v-btn
-                color="transparent"
-                dark
-                depressed
-                class="warningBtn"
-                >
-                    <v-icon>mdi-alert</v-icon>
-                    <h4>颱風警報！</h4>
-                </v-btn>
-            </div>
-            <div class="warningInfo">
+        <div v-show="alert" class="navAlert">
+            <div v-for="(item,index) in alertInfo" class="warningInfo" :key="index">
                 <v-btn color="transparent"
-                    dark
-                    depressed
-                    class="warningBtn">
+                        dark
+                        depressed
+                        class="warningBtn">
                     <v-icon>mdi-alert</v-icon>
-                    <h4>颱風警報！</h4>
+                    <h4>{{ item }}</h4>
                 </v-btn>
             </div>
         </div>
@@ -97,7 +69,8 @@ export default {
     data() {
         return {
             dialog: true,
-            alert: true
+            alert: true,
+            alertInfo:['颱風警報！','地震警報！','海嘯警報！']
         }
     },
     computed: {

@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="listText col-7">
-                <div v-for="(item,index) in nowList" :key="index" class="listItem" >
+                <div v-for="(item,index) in nowList" class="listItem" :key="index">
                     <a :href="nowList[index].url" class="itemTitle d-flex align-center mb-2">
                         <v-icon>mdi-link-variant</v-icon>
                         <h5 class="ml-2">{{ nowList[index].name }}</h5>

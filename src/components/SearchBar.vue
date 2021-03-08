@@ -4,15 +4,15 @@
             <h3>遊憩查詢</h3>
         </div>
         <div class="selectOption col-lg-5 col-xs-10 col-sm-5 pa-0">
-            <v-combobox :items="selectItems"
-                        label="選擇遊憩活動"
+            <v-combobox label="選擇遊憩活動"
                         dense
                         dark
                         background-color="#0F1B33"
                         outlined
                         prepend-inner-icon="mdi-magnify"
                         type="text"
-                        hide-details="true">
+                        hide-details="true"
+                        :items="selectItems">
             </v-combobox>
         </div>
     </div>

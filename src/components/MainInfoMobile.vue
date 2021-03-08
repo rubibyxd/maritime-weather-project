@@ -13,28 +13,26 @@
         <div class="listToggle d-flex flex-column">
             <div class="btnHandler col-12 pa-0">
             <v-expansion-panels class="btnHandler col-12 pa-0">
-                <v-expansion-panel
-                v-for="(item,index) in menu"
-                :key="index"
-                @click.stop="onTogleClick(index)"
-                class="togleBtn"
-                active-class="togleBtn--active"
-                :class="{
-                        'mb-5' : index !== menu.length -1,
-                        'togleBtn--active': item.isActive
-                    }"
-                >
+                <v-expansion-panel v-for="(item,index) in menu"
+                                    class="togleBtn"
+                                    active-class="togleBtn--active"
+                                    :key="index"
+                                    :class="{
+                                            'mb-5' : index !== menu.length -1,
+                                            'togleBtn--active': item.isActive
+                                        }"
+                                    @click.stop="onTogleClick(index)">
                 <v-expansion-panel-header color="rgba(98, 182, 238, 0.6)">
                     <v-img v-if="item.type === 'IMAGE'"
-                        contain
-                        max-width="20"
-                        :alt="item.alt"
-                        :src="item.src"/>
+                            contain
+                            max-width="20"
+                            :alt="item.alt"
+                            :src="item.src"/>
                     <v-icon v-else-if="item.type === 'ICON'">{{item.icon}}</v-icon>
                     <h4 class="ml-2">{{item.label}}</h4>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content class="pt-5">
-                    <div v-for="(item,index) in nowList" :key="index" class="listItem" >
+                    <div v-for="(item,index) in nowList" class="listItem" :key="index">
                         <a :href="nowList[index].url" class="itemTitle d-flex align-center mb-2">
                             <v-icon>mdi-link-variant</v-icon>
                             <h5 class="ml-2">{{ nowList[index].name }}</h5>
