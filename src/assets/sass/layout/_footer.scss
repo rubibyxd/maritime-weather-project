@@ -1,0 +1,38 @@
+.footer {
+  width: 100%;
+  .webFooter {
+    padding: 10px 139px;
+    background-color: $mainColor;
+    display: flex;
+    justify-content: center;
+    .footerText {
+      padding: 0 20px;
+    }
+  }
+  @include pad {
+    .webFooter {
+      padding: 10px 40px;
+    }
+  }
+  @include mobile {
+    .mobileFooter {
+      padding: 10px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .footerText {
+        font-size: 12px;
+        margin-bottom: 5px;
+      }
+      .v-icon {
+        font-size: 14px;
+      }
+      .v-btn {
+        margin-bottom: 5px;
+      }
+      .languageChoose {
+        font-size: 14px;
+      }
+    }
+  }
+}

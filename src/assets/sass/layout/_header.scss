@@ -1,0 +1,117 @@
+.navBar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .v-icon {
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  .mainNav {
+    padding: 10px 139px;
+    background-color: $mainColor;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .navLogo {
+      margin-left: 25px;
+      img {
+        width: 100%;
+      }
+    }
+    .navOption {
+      display: flex;
+      flex-direction: column;
+      margin-right: 25px;
+      .languageChoose {
+        display: flex;
+        margin-bottom: 10px;
+        .currentLag {
+          margin: 0 10px;
+        }
+        .v-icon {
+          margin: 0;
+        }
+      }
+      .webRules {
+        display: flex;
+      }
+    }
+  }
+  .navAlert {
+    padding: 5px 159px;
+    background-color: $alertColor;
+    display: flex;
+    flex-wrap: wrap;
+    @include boxShadow;
+    .warningInfo {
+      display: flex;
+      &::after {
+        content: "|";
+        font-size: 24px;
+        text-align: center;
+        height: 100%;
+        margin: 0 10px;
+        font-weight: normal;
+        color: lighten($alertColor, 30%);
+      }
+    }
+  }
+  @include pad {
+    .navTitle {
+      font-size: 20px;
+    }
+    .mainNav {
+      padding: 20px 40px;
+    }
+    .navLogo {
+      width: 25%;
+    }
+    .navAlert {
+      padding: 5px 40px;
+    }
+  }
+  @include mobile {
+    .mainNav {
+      padding: 10px 20px;
+      .navLogo {
+        width: 50px;
+        margin-left: 0;
+        margin-right: 15px;
+      }
+      .navTitle {
+        font-size: 16px;
+      }
+    }
+    .navAlert {
+      padding: 0;
+      border-radius: 0;
+      background-color: $alertColor !important;
+      .warningInfo {
+        display: flex;
+        position: relative;
+        h4 {
+          font-size: 14px;
+        }
+        .v-icon {
+          font-size: 14px;
+        }
+        &::after {
+          content: "";
+        }
+        .customBadge {
+          width: 20px;
+          height: 15px;
+          border-radius: 30px;
+          background-color: #f3c42b;
+          position: absolute;
+          right: 20px;
+          top: 5px;
+          font-size: 12px;
+          text-align: center;
+          color: $mainColor;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

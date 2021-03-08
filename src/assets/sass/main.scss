@@ -1,0 +1,21 @@
+// Font
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap");
+
+// Utils
+@import "utils/variables";
+@import "utils/mixins";
+
+// Base
+@import "base/reset";
+
+// Layout
+@import "layout/header";
+@import "layout/footer";
+@import "layout/mainContent";
+
+// Vendors
+@import "vendors/vuetify";
+
+// Components
+@import "components/searchBar";
+@import "components/button";

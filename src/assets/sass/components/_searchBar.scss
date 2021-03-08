@@ -1,0 +1,24 @@
+.searchBar {
+  padding: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .searchTitle {
+    display: inline-block;
+    padding: 3px 20px;
+    background-color: $mainColor;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  .selectOption {
+    .v-text-field--outlined {
+      border-color: red;
+    }
+  }
+  @include mobile {
+    padding: 0 20px;
+  }
+}

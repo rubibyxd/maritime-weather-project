@@ -1,0 +1,25 @@
+.customBtn {
+  width: 49%;
+  @include customBtn;
+  @include mobile {
+    padding: 16px 24px;
+  }
+}
+
+.togleBtn {
+  width: 100%;
+  @include customBtn;
+  &--active {
+    background-color: $btnActive;
+    .v-expansion-panel-header--active {
+      background-color: $btnActive !important;
+      border-bottom: 2px solid white !important;
+    }
+    &:hover {
+      background-color: $btnActive;
+    }
+  }
+  @include mobile {
+    padding: 0;
+  }
+}

@@ -1,0 +1,29 @@
+.theme--light.v-application {
+  background-color: transparent !important;
+  color: unset !important;
+}
+
+.theme--light.v-list {
+  background-color: $mainColor !important;
+}
+
+.v-list-item__title {
+  color: $fontColor !important;
+}
+
+.v-icon {
+  color: unset !important;
+}
+
+.theme--light.v-expansion-panels .v-expansion-panel {
+  background-color: unset !important;
+  color: unset !important;
+}
+
+.v-expansion-panel-header > *:not(.v-expansion-panel-header__icon) {
+  flex: unset !important;
+}
+
+.v-badge__badge {
+  padding: 5px 6px;
+}

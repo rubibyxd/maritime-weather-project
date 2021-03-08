@@ -1,0 +1,25 @@
+.mainInfo {
+  width: 100%;
+  .btnHandler {
+    margin-right: 15px;
+  }
+  .listToggle {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 15px;
+  }
+  .listText {
+    max-height: 284px;
+    border: 1px solid $fontColor;
+    border-left: 5px solid $fontColor;
+    border-radius: 5px;
+    background-color: rgba($mainColor, 0.6);
+    overflow: auto;
+    @include customScrollBar;
+  }
+  @include pad {
+    padding: 0 20px;
+  }
+  @include mobile {
+  }
+}
