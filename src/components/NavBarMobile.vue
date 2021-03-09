@@ -65,7 +65,7 @@ export default {
         return {
             alert: true,
             warningNum:3,
-            logoUrl:"images/small.png"
+            logoUrl:"images/logo-small.png"
         }
     }
 }
