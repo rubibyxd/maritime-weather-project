@@ -1,16 +1,16 @@
 <template>
   <v-app>
-    <NavBar v-if="nowViewport === 0" />
-    <NavBarMobile v-if="nowViewport === 1" />
+    <NavBar v-if="!isMobile" />
+    <NavBarMobile v-if="isMobile" />
     <v-main>
       <v-container>
         <SearchBar />
-        <MainInfo v-if="nowViewport === 0" />
-        <MainInfoMobile v-if="nowViewport === 1" />
+        <MainInfo v-if="!isMobile" />
+        <MainInfoMobile v-if="isMobile" />
       </v-container>
     </v-main>
-    <Footer v-if="nowViewport === 0" />
-    <FooterMobile v-if="nowViewport === 1" />
+    <Footer v-if="!isMobile" />
+    <FooterMobile v-if="isMobile" />
   </v-app>
 </template>
 
@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      nowViewport:0,
+      isMobile:false
     }
   },
   methods: {
@@ -38,9 +38,9 @@ export default {
       setInterval(() => {
             let nowWidth = window.innerWidth;
             if (nowWidth <= 568) {
-                this.nowViewport = 1
+                this.isMobile = true
             }else{
-              this.nowViewport = 0
+              this.isMobile = false
             }
         }, 100);
     }
