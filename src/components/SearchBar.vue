@@ -12,13 +12,13 @@
                         prepend-inner-icon="mdi-magnify"
                         type="text"
                         hide-details="true"
-                        :items="selectItems">
-            </v-combobox>
+                        :items="selectItems"/>
         </div>
     </div>
 </template>
 <script>
 export default {
+    name: 'SearchBar',
     data() {
         return {
             selectItems: ['獨木舟', '風帆', '船釣', '遊艇','快艇','帆船','水上摩托車','水面飛行傘','香蕉船','水面飛行艇拖曳浮胎'],

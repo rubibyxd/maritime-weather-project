@@ -2,7 +2,7 @@
     <div class="navBar">
         <div class="mainNav justify-center">
             <div class="navLogo">
-                <img src="/images/logo-small.png" alt="logo">
+                <img :src="logoUrl" alt="logo">
             </div>
             <h2 class="navTitle">海域遊憩活動一站式資訊平台</h2>
         </div>
@@ -60,21 +60,13 @@
 </template>
 <script>
 export default {
+    name: 'NavBarMobile',
     data() {
         return {
             alert: true,
-            warningNum:3
+            warningNum:3,
+            logoUrl:"images/small.png"
         }
-    },
-    methods: {
-        closeBadge(){
-            let badge = document.querySelector('.customBadge')
-            if(badge.style.display === 'none'){
-                badge.style.display = 'block'
-            }else{
-                badge.style.display = 'none'
-            }
-        }
-    },
+    }
 }
 </script>

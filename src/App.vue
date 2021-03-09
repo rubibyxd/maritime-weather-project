@@ -1,17 +1,17 @@
 <template>
-  <v-app>
-    <NavBar v-if="!isMobile" />
-    <NavBarMobile v-if="isMobile" />
-    <v-main>
-      <v-container>
-        <SearchBar />
-        <MainInfo v-if="!isMobile" />
-        <MainInfoMobile v-if="isMobile" />
-      </v-container>
-    </v-main>
-    <Footer v-if="!isMobile" />
-    <FooterMobile v-if="isMobile" />
-  </v-app>
+    <v-app>
+        <NavBarMobile v-if="isMobile" />
+        <NavBar v-else />
+        <v-main>
+            <v-container>
+              <SearchBar />
+              <MainInfoMobile v-if="isMobile" />
+              <MainInfo v-else />
+            </v-container>
+        </v-main>
+        <FooterMobile v-if="isMobile" />
+        <Footer v-else />
+    </v-app>
 </template>
 
 <script>
@@ -24,29 +24,31 @@ import NavBarMobile from '@/components/NavBarMobile.vue'
 import FooterMobile from '@/components/FooterMobile.vue'
 import MainInfoMobile from '@/components/MainInfoMobile.vue'
 export default {
-  name: 'App',
-  components: {
-    NavBar,Footer,SearchBar,MainInfo,NavBarMobile,FooterMobile,MainInfoMobile
-  },
-  data() {
-    return {
-      isMobile:false
-    }
-  },
-  methods: {
-    winWidth() {
-      setInterval(() => {
-            let nowWidth = window.innerWidth;
-            if (nowWidth <= 568) {
-                this.isMobile = true
-            }else{
-              this.isMobile = false
-            }
-        }, 100);
-    }
-  },
-  mounted() {
-    this.winWidth()
-  }
+    name: 'App',
+    components: {
+        NavBar,Footer,SearchBar,MainInfo,NavBarMobile,FooterMobile,MainInfoMobile
+    },
+    data() {
+        return {
+            isMobile:false,
+            interval: null
+        }
+    },
+    methods: {
+        winWidth() {
+            this.interval = setInterval(() => {
+                let nowWidth = window.innerWidth;
+                if (nowWidth <= 568) this.isMobile = true
+                else this.isMobile = false
+            }, 100);
+        }
+    },
+    mounted() {
+        this.winWidth()
+    },
+    beforeDestroy() {
+        // 網頁關閉就將interval效果clear
+        clearInterval(this.interval)
+    },
 };
 </script>

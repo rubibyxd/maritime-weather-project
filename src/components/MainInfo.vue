@@ -45,6 +45,7 @@
 </template>
 <script>
 export default {
+    name: 'MainInfo',
     data() {
         return {
             menu: [
@@ -144,8 +145,11 @@ export default {
                     ]
                 }
             ],
-            nowList:[]
+            nowList: []
         }
+    },
+    created() {
+        this.nowList = this.menu[0].sub
     },
     methods: {
         onTogleClick(index) {
@@ -156,9 +160,6 @@ export default {
                 return item
             })
         }
-    },
-    mounted() {
-        this.nowList = this.menu[0].sub
-    },
+    }
 }
 </script>

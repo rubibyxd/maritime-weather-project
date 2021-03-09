@@ -50,6 +50,7 @@
 </template>
 <script>
 export default {
+    name: 'MainInfoMobile',
     data() {
         return {
             menu: [
@@ -59,7 +60,7 @@ export default {
                     src: 'images/apply.svg',
                     alt: 'apply',
                     icon: '',
-                    isActive: true,
+                    isActive: false,
                     sub: [
                         {
                             name:'基隆市島礁磯釣活動',
@@ -149,7 +150,7 @@ export default {
                     ]
                 }
             ],
-            nowList:[]
+            nowList: []
         }
     },
     methods: {
@@ -161,9 +162,6 @@ export default {
                 return item
             })
         }
-    },
-    mounted() {
-        this.nowList = this.menu[0].sub
-    },
+    }
 }
 </script>

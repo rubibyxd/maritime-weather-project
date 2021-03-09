@@ -50,15 +50,23 @@
 </template>
 <script>
 export default {
+    name: 'FooterMobile',
     data() {
         return {
             dialog: true,
         }
     },
+    created() {
+        // 檢查cookies是否有拿到此token，有即表示用戶以閱讀過條約
+        const isAlreadyRead = this.$cookies.get('dialog_open_token_for_rule') ? true : false
+        if (isAlreadyRead) this.dialog = false
+        else this.dialog = true
+    },
     methods: {
         dialogSetting(){
             this.dialog = false;
-            this.$cookies.set("dialog_open_token_for_rule","web rule already read",-1);
+            // 按下同意鍵後設定cookies的token
+            this.$cookies.set("dialog_open_token_for_rule","web rule already read",-1)
         }
     },
     computed:{
@@ -75,13 +83,6 @@ export default {
             rule += '<br><br><br>'
             rule += '本系統版權及管理機關為海洋委員會。'
             return rule
-        }
-    },
-    mounted() {
-        if(this.$cookies.get('dialog_open_token_for_rule')){
-            this.dialog = false;
-        }else{
-            this.dialog = true;
         }
     },
 }

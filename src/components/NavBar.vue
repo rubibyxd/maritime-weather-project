@@ -2,16 +2,14 @@
     <div class="navBar">
         <div class="mainNav">
             <div class="navLogo">
-                <img src="/images/logo.png" alt="logo">
+                <img :src="logoUrl" alt="logo">
             </div>
             <h2 class="navTitle">海域遊憩活動一站式資訊平台</h2>
             <div class="navOption">
                 <div class="languageChoose">
-                    <v-btn
-                    color="transparent"
-                    dark
-                    depressed
-                    >
+                    <v-btn color="transparent"
+                        dark
+                        depressed>
                     <v-icon>mdi-earth</v-icon>
                     <h4 class="currentLag">中文</h4>                    
                     <v-icon>mdi-chevron-down</v-icon>
@@ -21,10 +19,10 @@
                     <v-dialog v-model="dialog" width="500">
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn color="transparent"
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    dark
-                                    depressed>
+                                v-bind="attrs"
+                                v-on="on"
+                                dark
+                                depressed>
                                 <v-icon>mdi-note-text-outline</v-icon>
                                 <h4>網站規範</h4>
                             </v-btn>
@@ -40,9 +38,9 @@
                             <v-card-actions>
                             <v-spacer></v-spacer>
                             <v-btn color="blue darken-3"
-                                    outlined
-                                    text
-                                    @click="dialogSetting">
+                                outlined
+                                text
+                                @click="dialogSetting">
                                 我同意
                             </v-btn>
                             </v-card-actions>
@@ -66,16 +64,25 @@
 </template>
 <script>
 export default {
+    name: 'NavBar',
     data() {
         return {
             dialog: true,
             alert: true,
-            alertInfo:['颱風警報！','地震警報！','海嘯警報！']
+            alertInfo: ['颱風警報！','地震警報！','海嘯警報！'],
+            logoUrl: "images/logo.png"
         }
+    },
+    created() {
+        // 檢查cookies是否有拿到此token，有即表示用戶以閱讀過條約
+        const isAlreadyRead = this.$cookies.get('dialog_open_token_for_rule') ? true : false
+        if (isAlreadyRead) this.dialog = false
+        else this.dialog = true
     },
     methods: {
         dialogSetting(){
             this.dialog = false;
+            // 按下同意鍵後設定cookies的token
             this.$cookies.set("dialog_open_token_for_rule","web rule already read",-1);
         }
     },
@@ -94,13 +101,6 @@ export default {
             rule += '本系統版權及管理機關為海洋委員會。'
             return rule
         }
-    },
-    mounted() {
-        if(this.$cookies.get('dialog_open_token_for_rule')){
-            this.dialog = false;
-        }else{
-            this.dialog = true;
-        }
-    },
+    }
 }
 </script>
