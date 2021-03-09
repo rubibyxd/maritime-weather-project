@@ -38,7 +38,7 @@
                         <v-btn color="blue darken-3"
                                 text
                                 outlined
-                                @click="dialog = false">
+                                @click="dialogSetting">
                             我同意
                         </v-btn>
                         </v-card-actions>
@@ -53,6 +53,12 @@ export default {
     data() {
         return {
             dialog: true,
+        }
+    },
+    methods: {
+        dialogSetting(){
+            this.dialog = false;
+            this.$cookies.set("dialog_open_token_for_rule","web rule already read",-1);
         }
     },
     computed:{
@@ -70,6 +76,13 @@ export default {
             rule += '本系統版權及管理機關為海洋委員會。'
             return rule
         }
-    }
+    },
+    mounted() {
+        if(this.$cookies.get('dialog_open_token_for_rule')){
+            this.dialog = false;
+        }else{
+            this.dialog = true;
+        }
+    },
 }
 </script>

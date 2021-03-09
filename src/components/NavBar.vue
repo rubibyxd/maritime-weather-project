@@ -42,7 +42,7 @@
                             <v-btn color="blue darken-3"
                                     outlined
                                     text
-                                    @click="dialog = false">
+                                    @click="dialogSetting">
                                 我同意
                             </v-btn>
                             </v-card-actions>
@@ -73,6 +73,12 @@ export default {
             alertInfo:['颱風警報！','地震警報！','海嘯警報！']
         }
     },
+    methods: {
+        dialogSetting(){
+            this.dialog = false;
+            this.$cookies.set("dialog_open_token_for_rule","web rule already read",-1);
+        }
+    },
     computed: {
         rules() {
             let rule = '本系統係為便利一般民眾單站視覺化查詢海域遊憩活動相關規定，所呈現之法規、公告資料為各主管機關、'
@@ -88,6 +94,13 @@ export default {
             rule += '本系統版權及管理機關為海洋委員會。'
             return rule
         }
-    }
+    },
+    mounted() {
+        if(this.$cookies.get('dialog_open_token_for_rule')){
+            this.dialog = false;
+        }else{
+            this.dialog = true;
+        }
+    },
 }
 </script>
