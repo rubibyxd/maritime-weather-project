@@ -31,9 +31,9 @@
                     <v-icon v-else-if="item.type === 'ICON'">{{item.icon}}</v-icon>
                     <h4 class="ml-2">{{item.label}}</h4>
                 </v-expansion-panel-header>
-                <v-expansion-panel-content class="pt-5">
+                <v-expansion-panel-content>
                     <div v-for="(item,index) in nowList" class="listItem" :key="index">
-                        <a :href="nowList[index].url" class="itemTitle d-flex align-center mb-2">
+                        <a :href="nowList[index].url" class="itemTitle d-flex align-center mt-5">
                             <v-icon>mdi-link-variant</v-icon>
                             <h5 class="ml-2">{{ nowList[index].name }}</h5>
                         </a>

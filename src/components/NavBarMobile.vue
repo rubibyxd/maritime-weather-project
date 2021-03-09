@@ -8,8 +8,7 @@
         </div>
         <v-expansion-panels v-if="warningNum > 1" 
                             v-show="alert"
-                            class="navAlert"
-                            @click.native="closeBadge()">
+                            class="navAlert">
                 <v-expansion-panels class="warningInfo">
                     <v-expansion-panel>
                         <v-expansion-panel-header>
