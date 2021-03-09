@@ -13,13 +13,13 @@
                     <v-expansion-panel>
                         <v-expansion-panel-header>
                             <v-icon>mdi-alert</v-icon>
-                            <h4>颱風警報！</h4>
+                            <h4>警報注意！</h4>
                             <template v-slot:actions>
-                                <v-badge color="yellow darken-3"
-                                    offset-x="10"
-                                    offset-y="5"
+                                <v-badge color="orange darken-3"
+                                    offset-x="12"
+                                    offset-y="8"
                                     light
-                                    content="5">
+                                    :content="warningNum">
                                     <v-icon color="#fff">
                                     $expand
                                     </v-icon>
@@ -27,9 +27,9 @@
                             </template>
                         </v-expansion-panel-header>
                     <v-expansion-panel-content>
-                        <div class="d-flex align-center">
+                        <div v-for="(item,index) in alertInfo" class="d-flex align-center mt-5" :key="index">
                             <v-icon>mdi-alert</v-icon>
-                            <h4>颱風警報！</h4>
+                            <h4>{{ item }}</h4>
                             <v-btn class="ml-auto"
                                 color="orange darken-3"
                                 elevation="2"
@@ -64,7 +64,8 @@ export default {
         return {
             alert: true,
             warningNum:3,
-            logoUrl:"images/logo-small.png"
+            logoUrl:"images/logo-small.png",
+            alertInfo: ['颱風警報！','地震警報！','海嘯警報！'],
         }
     }
 }
