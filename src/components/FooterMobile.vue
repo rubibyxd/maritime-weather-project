@@ -1,46 +1,61 @@
 <template>
     <div class="footer">
         <div class="mobileFooter">
-            <h6 class="footerText">©2021 海洋委員會</h6>
-            <h6 class="footerText">806614 高雄市前鎮區成功二路25號4樓</h6>
-            <h6 class="footerText">(07)338-1810</h6>
+            <h6 class="footerText">
+                ©2021 海洋委員會
+            </h6>
+            <h6 class="footerText">
+                806614 高雄市前鎮區成功二路25號4樓
+            </h6>
+            <h6 class="footerText">
+                (07)338-1810
+            </h6>
             <div class="languageChoose d-flex align-center">
-                <v-btn color="transparent"
-                        dark
-                        small
-                        depressed>
-                <v-icon>mdi-earth</v-icon>
-                <p class="currentLag ma-0 pl-1 pr-1">中文</p>                    
-                <v-icon>mdi-chevron-down</v-icon>
+                <v-btn
+                    color="transparent"
+                    dark
+                    small
+                    depressed>
+                    <v-icon>mdi-earth</v-icon>
+                    <p class="currentLag ma-0 pl-1 pr-1">
+                        中文
+                    </p>
+                    <v-icon>mdi-chevron-down</v-icon>
                 </v-btn>
             </div>
             <div class="webRules">
-                <v-dialog v-model="dialog" width="500">
+                <v-dialog
+                    v-model="dialog"
+                    width="500">
                     <template v-slot:activator="{ on, attrs }">
-                        <v-btn v-bind="attrs"
-                                v-on="on"
-                                color="transparent"
-                                dark
-                                small
-                                depressed>
+                        <v-btn
+                            v-bind="attrs"
+                            color="transparent"
+                            dark
+                            small
+                            depressed
+                            v-on="on">
                             <v-icon>mdi-note-text-outline</v-icon>
-                            <p class="ma-0 pl-1">網站規範</p>
+                            <p class="ma-0 pl-1">
+                                網站規範
+                            </p>
                         </v-btn>
                     </template>
                     <v-card>
                         <v-card-title class="headline darken-2">
-                        網站規範
+                            網站規範
                         </v-card-title>
-                        <v-card-text v-html="rules"></v-card-text>
-                        <v-divider></v-divider>
+                        <v-card-text v-html="rules" />
+                        <v-divider />
                         <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn color="blue darken-3"
+                            <v-spacer />
+                            <v-btn
+                                color="blue darken-3"
                                 text
                                 outlined
                                 @click="dialogSetting">
-                            我同意
-                        </v-btn>
+                                我同意
+                            </v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-dialog>
@@ -51,26 +66,13 @@
 <script>
 export default {
     name: 'FooterMobile',
-    data() {
+    data () {
         return {
-            dialog: true,
+            dialog: true
         }
     },
-    created() {
-        // 檢查cookies是否有拿到此token，有即表示用戶以閱讀過條約
-        const isAlreadyRead = this.$cookies.get('dialog_open_token_for_rule') ? true : false
-        if (isAlreadyRead) this.dialog = false
-        else this.dialog = true
-    },
-    methods: {
-        dialogSetting(){
-            this.dialog = false;
-            // 按下同意鍵後設定cookies的token
-            this.$cookies.set("dialog_open_token_for_rule","web rule already read",-1)
-        }
-    },
-    computed:{
-         rules() {
+    computed: {
+        rules () {
             let rule = '本系統係為便利一般民眾單站視覺化查詢海域遊憩活動相關規定，所呈現之法規、公告資料為各主管機關、'
             rule += '各縣市政府所提供資料彙整而得，因各主管機關、各縣市資料建置時間之差異及建檔品質，'
             rule += '與實際公告或有不同，實際內容仍依各主管機關、各縣市政府公告為準。'
@@ -85,5 +87,18 @@ export default {
             return rule
         }
     },
+    created () {
+        // 檢查cookies是否有拿到此token，有即表示用戶以閱讀過條約
+        const isAlreadyRead = !!this.$cookies.get('dialog_open_token_for_rule')
+        if (isAlreadyRead) this.dialog = false
+        else this.dialog = true
+    },
+    methods: {
+        dialogSetting () {
+            this.dialog = false
+            // 按下同意鍵後設定cookies的token
+            this.$cookies.set('dialog_open_token_for_rule', 'web rule already read', -1)
+        }
+    }
 }
 </script>

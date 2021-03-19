@@ -2,59 +2,76 @@
     <div class="navBar">
         <div class="mainNav">
             <div class="navLogo">
-                <img :src="logoUrl" alt="logo">
+                <img
+                    :src="logoUrl"
+                    alt="logo">
             </div>
-            <h2 class="navTitle">海域遊憩活動一站式資訊平台</h2>
+            <h2 class="navTitle">
+                海域遊憩活動一站式資訊平台
+            </h2>
             <div class="navOption">
                 <div class="languageChoose">
-                    <v-btn color="transparent"
+                    <v-btn
+                        color="transparent"
                         dark
                         depressed>
-                    <v-icon>mdi-earth</v-icon>
-                    <h4 class="currentLag">中文</h4>                    
-                    <v-icon>mdi-chevron-down</v-icon>
+                        <v-icon>mdi-earth</v-icon>
+                        <h4 class="currentLag">
+                            中文
+                        </h4>
+                        <v-icon>mdi-chevron-down</v-icon>
                     </v-btn>
                 </div>
                 <div class="webRules">
-                    <v-dialog v-model="dialog" width="500">
+                    <v-dialog
+                        v-model="dialog"
+                        width="500">
                         <template v-slot:activator="{ on, attrs }">
-                            <v-btn color="transparent"
+                            <v-btn
+                                color="transparent"
                                 v-bind="attrs"
-                                v-on="on"
                                 dark
-                                depressed>
+                                depressed
+                                v-on="on">
                                 <v-icon>mdi-note-text-outline</v-icon>
                                 <h4>網站規範</h4>
                             </v-btn>
                         </template>
                         <v-card>
                             <v-card-title class="headline darken-2">
-                            網站規範
+                                網站規範
                             </v-card-title>
                             <v-card-text>
-                                <div v-html="rules"></div>
+                                <div v-html="rules" />
                             </v-card-text>
-                            <v-divider></v-divider>
+                            <v-divider />
                             <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-btn color="blue darken-3"
-                                outlined
-                                text
-                                @click="dialogSetting">
-                                我同意
-                            </v-btn>
+                                <v-spacer />
+                                <v-btn
+                                    color="blue darken-3"
+                                    outlined
+                                    text
+                                    @click="dialogSetting">
+                                    我同意
+                                </v-btn>
                             </v-card-actions>
                         </v-card>
                     </v-dialog>
                 </div>
             </div>
         </div>
-        <div v-show="alert" class="navAlert">
-            <div v-for="(item,index) in alertInfo" class="warningInfo" :key="index">
-                <v-btn color="transparent"
-                        dark
-                        depressed
-                        class="warningBtn">
+        <div
+            v-show="alert"
+            class="navAlert">
+            <div
+                v-for="(item,index) in alertInfo"
+                :key="index"
+                class="warningInfo">
+                <v-btn
+                    color="transparent"
+                    dark
+                    depressed
+                    class="warningBtn">
                     <v-icon>mdi-alert</v-icon>
                     <h4>{{ item }}</h4>
                 </v-btn>
@@ -65,29 +82,16 @@
 <script>
 export default {
     name: 'NavBar',
-    data() {
+    data () {
         return {
             dialog: true,
             alert: true,
-            alertInfo: ['颱風警報！','地震警報！','海嘯警報！'],
-            logoUrl: "images/logo.png"
-        }
-    },
-    created() {
-        // 檢查cookies是否有拿到此token，有即表示用戶以閱讀過條約
-        const isAlreadyRead = this.$cookies.get('dialog_open_token_for_rule') ? true : false
-        if (isAlreadyRead) this.dialog = false
-        else this.dialog = true
-    },
-    methods: {
-        dialogSetting(){
-            this.dialog = false;
-            // 按下同意鍵後設定cookies的token
-            this.$cookies.set("dialog_open_token_for_rule","web rule already read",-1);
+            alertInfo: ['颱風警報！', '地震警報！', '海嘯警報！'],
+            logoUrl: 'images/logo.png'
         }
     },
     computed: {
-        rules() {
+        rules () {
             let rule = '本系統係為便利一般民眾單站視覺化查詢海域遊憩活動相關規定，所呈現之法規、公告資料為各主管機關、'
             rule += '各縣市政府所提供資料彙整而得，因各主管機關、各縣市資料建置時間之差異及建檔品質，'
             rule += '與實際公告或有不同，實際內容仍依各主管機關、各縣市政府公告為準。'
@@ -100,6 +104,19 @@ export default {
             rule += '<br><br><br>'
             rule += '本系統版權及管理機關為海洋委員會。'
             return rule
+        }
+    },
+    created () {
+        // 檢查cookies是否有拿到此token，有即表示用戶以閱讀過條約
+        const isAlreadyRead = !!this.$cookies.get('dialog_open_token_for_rule')
+        if (isAlreadyRead) this.dialog = false
+        else this.dialog = true
+    },
+    methods: {
+        dialogSetting () {
+            this.dialog = false
+            // 按下同意鍵後設定cookies的token
+            this.$cookies.set('dialog_open_token_for_rule', 'web rule already read', -1)
         }
     }
 }

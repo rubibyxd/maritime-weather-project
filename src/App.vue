@@ -4,9 +4,9 @@
         <NavBar v-else />
         <v-main>
             <v-container>
-              <SearchBar />
-              <MainInfoMobile v-if="isMobile" />
-              <MainInfo v-else />
+                <SearchBar />
+                <MainInfoMobile v-if="isMobile" />
+                <MainInfo v-else />
             </v-container>
         </v-main>
         <FooterMobile v-if="isMobile" />
@@ -26,29 +26,29 @@ import MainInfoMobile from '@/components/MainInfoMobile.vue'
 export default {
     name: 'App',
     components: {
-        NavBar,Footer,SearchBar,MainInfo,NavBarMobile,FooterMobile,MainInfoMobile
+        NavBar, Footer, SearchBar, MainInfo, NavBarMobile, FooterMobile, MainInfoMobile
     },
-    data() {
+    data () {
         return {
-            isMobile:false,
+            isMobile: false,
             interval: null
         }
     },
-    methods: {
-        winWidth() {
-            this.interval = setInterval(() => {
-                let nowWidth = window.innerWidth;
-                if (nowWidth <= 568) this.isMobile = true
-                else this.isMobile = false
-            }, 100);
-        }
-    },
-    mounted() {
+    mounted () {
         this.winWidth()
     },
-    beforeDestroy() {
+    beforeDestroy () {
         // 網頁關閉就將interval效果clear
         clearInterval(this.interval)
     },
-};
+    methods: {
+        winWidth () {
+            this.interval = setInterval(() => {
+                const nowWidth = window.innerWidth
+                if (nowWidth <= 568) this.isMobile = true
+                else this.isMobile = false
+            }, 100)
+        }
+    }
+}
 </script>

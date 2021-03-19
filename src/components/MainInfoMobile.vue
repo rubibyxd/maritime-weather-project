@@ -2,48 +2,59 @@
     <div class="mainInfo">
         <div class="btnOntop pa-0">
             <div class="customBtn d-flex col-12 mb-5 align-center">
-                <v-icon class="mr-2">mdi-video</v-icon>
+                <v-icon class="mr-2">
+                    mdi-video
+                </v-icon>
                 <h4>海況即時影像</h4>
             </div>
             <div class="customBtn d-flex col-12 align-center">
-                <v-icon class="mr-2">mdi-map-search-outline</v-icon>
+                <v-icon class="mr-2">
+                    mdi-map-search-outline
+                </v-icon>
                 <h4>進入圖台</h4>
             </div>
         </div>
         <div class="listToggle d-flex flex-column">
             <div class="btnHandler col-12 pa-0">
-            <v-expansion-panels class="btnHandler col-12 pa-0">
-                <v-expansion-panel v-for="(item,index) in menu"
-                                    class="togleBtn"
-                                    active-class="togleBtn--active"
-                                    :key="index"
-                                    :class="{
-                                            'mb-5' : index !== menu.length -1,
-                                            'togleBtn--active': item.isActive
-                                        }"
-                                    @click.stop="onTogleClick(index)">
-                <v-expansion-panel-header color="rgba(98, 182, 238, 0.6)">
-                    <v-img v-if="item.type === 'IMAGE'"
-                            contain
-                            max-width="20"
-                            :alt="item.alt"
-                            :src="item.src"/>
-                    <v-icon v-else-if="item.type === 'ICON'">{{item.icon}}</v-icon>
-                    <h4 class="ml-2">{{item.label}}</h4>
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                    <div v-for="(item,index) in nowList" class="listItem" :key="index">
-                        <a :href="nowList[index].url" class="itemTitle d-flex align-center mt-5">
-                            <v-icon>mdi-link-variant</v-icon>
-                            <h5 class="ml-2">{{ nowList[index].name }}</h5>
-                        </a>
-                        <div class="itemInfo">
-                            <p>{{ nowList[index].info }}</p>  
-                        </div>
-                    </div>
-                </v-expansion-panel-content>
-                </v-expansion-panel>
-            </v-expansion-panels>
+                <v-expansion-panels class="btnHandler col-12 pa-0">
+                    <v-expansion-panel v-for="(item,index) in menu"
+                                       :key="index"
+                                       class="togleBtn"
+                                       active-class="togleBtn--active"
+                                       :class="{
+                                           'mb-5' : index !== menu.length -1,
+                                           'togleBtn--active': item.isActive
+                                       }"
+                                       @click.stop="onTogleClick(index)">
+                        <v-expansion-panel-header color="rgba(98, 182, 238, 0.6)">
+                            <v-img v-if="item.type === 'IMAGE'"
+                                   contain
+                                   max-width="20"
+                                   :alt="item.alt"
+                                   :src="item.src" />
+                            <v-icon v-else-if="item.type === 'ICON'">
+                                {{ item.icon }}
+                            </v-icon>
+                            <h4 class="ml-2">
+                                {{ item.label }}
+                            </h4>
+                        </v-expansion-panel-header>
+                        <v-expansion-panel-content>
+                            <div v-for="(nowListItem, nowListIndex) in nowList"
+                                 :key="nowListIndex"
+                                 class="listItem">
+                                <a :href="nowList[nowListIndex].url"
+                                   class="itemTitle d-flex align-center mt-5">
+                                    <v-icon>mdi-link-variant</v-icon>
+                                    <h5 class="ml-2">{{ nowList[nowListIndex].name }}</h5>
+                                </a>
+                                <div class="itemInfo">
+                                    <p>{{ nowList[nowListIndex].info }}</p>
+                                </div>
+                            </div>
+                        </v-expansion-panel-content>
+                    </v-expansion-panel>
+                </v-expansion-panels>
             </div>
         </div>
     </div>
@@ -51,7 +62,7 @@
 <script>
 export default {
     name: 'MainInfoMobile',
-    data() {
+    data () {
         return {
             menu: [
                 {
@@ -63,24 +74,24 @@ export default {
                     isActive: false,
                     sub: [
                         {
-                            name:'基隆市島礁磯釣活動',
-                            url:'https://www.icellars.tw/keelungreeffishing/auth/login.html',
-                            info:'基隆市政府、基隆區漁會'
+                            name: '基隆市島礁磯釣活動',
+                            url: 'https://www.icellars.tw/keelungreeffishing/auth/login.html',
+                            info: '基隆市政府、基隆區漁會'
                         },
                         {
-                            name:'遊艇申辦服務平台',
-                            url:'https://ftz.mtnet.gov.tw/YBerth/Portal/sys_a/a01/a0103',
-                            info:'泊位資訊查詢、遊艇進出港申請、泊位申請'
+                            name: '遊艇申辦服務平台',
+                            url: 'https://ftz.mtnet.gov.tw/YBerth/Portal/sys_a/a01/a0103',
+                            info: '泊位資訊查詢、遊艇進出港申請、泊位申請'
                         },
                         {
-                            name:'東北角龜山島登島',
-                            url:'https://www.necoast-nsa.gov.tw/coast/',
-                            info:'龜山島各項申請查詢作業、船舶資訊、法規資訊、登島表單之線上申請系統'
+                            name: '東北角龜山島登島',
+                            url: 'https://www.necoast-nsa.gov.tw/coast/',
+                            info: '龜山島各項申請查詢作業、船舶資訊、法規資訊、登島表單之線上申請系統'
                         },
                         {
-                            name:'台江國家公園水域',
-                            url:'https://www.tjnp.gov.tw/PublicInformationDetail.aspx?Cond=83713bde-e4e4-4f5c-a8ad-ed4cc0d60c34',
-                            info:'遊憩活動申請須知及相關附件'
+                            name: '台江國家公園水域',
+                            url: 'https://www.tjnp.gov.tw/PublicInformationDetail.aspx?Cond=83713bde-e4e4-4f5c-a8ad-ed4cc0d60c34',
+                            info: '遊憩活動申請須知及相關附件'
                         }
                     ]
                 },
@@ -92,16 +103,16 @@ export default {
                     icon: 'mdi-cancel',
                     isActive: false,
                     sub: [
-                            {
-                            name:'目前公告禁止或限制水域遊憩活動海域範圍',
-                            url:'https://ocean.taiwan.gov.tw/oacmap/1090210_%E5%85%AC%E5%91%8A%E7%A6%81%E6%AD%A2%E6%88%96%E9%99%90%E5%88%B6%E6%B0%B4%E5%9F%9F%E9%81%8A%E6%86%A9%E6%B4%BB%E5%8B%95%E6%B5%B7%E5%9F%9F%E7%AF%84%E5%9C%8D.pdf',
-                            info:''
-                            },
-                            {
-                            name:'礙航及射擊通報',
-                            url:'https://www.motcmpb.gov.tw/Information/Notice?SiteId=1&NodeId=483',
-                            info:''
-                            },
+                        {
+                            name: '目前公告禁止或限制水域遊憩活動海域範圍',
+                            url: 'https://ocean.taiwan.gov.tw/oacmap/1090210_%E5%85%AC%E5%91%8A%E7%A6%81%E6%AD%A2%E6%88%96%E9%99%90%E5%88%B6%E6%B0%B4%E5%9F%9F%E9%81%8A%E6%86%A9%E6%B4%BB%E5%8B%95%E6%B5%B7%E5%9F%9F%E7%AF%84%E5%9C%8D.pdf',
+                            info: ''
+                        },
+                        {
+                            name: '礙航及射擊通報',
+                            url: 'https://www.motcmpb.gov.tw/Information/Notice?SiteId=1&NodeId=483',
+                            info: ''
+                        }
                     ]
                 },
                 {
@@ -112,16 +123,16 @@ export default {
                     icon: '',
                     isActive: false,
                     sub: [
-                            {
-                                name:'Windy 地圖',
-                                url:'https://ocean.taiwan.gov.tw/?loc=23.202757154789474,121.89550794661046,7',
-                                info:''
-                            },
-                            {
-                                name:'台灣海象災防平台',
-                                url:'https://safesee.cwb.gov.tw/V2/',
-                                info:''
-                            }
+                        {
+                            name: 'Windy 地圖',
+                            url: 'https://ocean.taiwan.gov.tw/?loc=23.202757154789474,121.89550794661046,7',
+                            info: ''
+                        },
+                        {
+                            name: '台灣海象災防平台',
+                            url: 'https://safesee.cwb.gov.tw/V2/',
+                            info: ''
+                        }
                     ]
                 },
                 {
@@ -132,21 +143,21 @@ export default {
                     icon: '',
                     isActive: false,
                     sub: [
-                            {
-                                name:'海洋委員會主管法規',
-                                url:'https://law.oac.gov.tw/',
-                                info:''
-                            },
-                            {
-                                name:'海洋基本法',
-                                url:'https://www.oac.gov.tw/ch/home.jsp?id=147&parentpath=0,3',
-                                info:''
-                            },
-                            {
-                                name:'法制作業範例',
-                                url:'https://www.oac.gov.tw/ch/home.jsp?id=151&parentpath=0,3',
-                                info:''
-                            },
+                        {
+                            name: '海洋委員會主管法規',
+                            url: 'https://law.oac.gov.tw/',
+                            info: ''
+                        },
+                        {
+                            name: '海洋基本法',
+                            url: 'https://www.oac.gov.tw/ch/home.jsp?id=147&parentpath=0,3',
+                            info: ''
+                        },
+                        {
+                            name: '法制作業範例',
+                            url: 'https://www.oac.gov.tw/ch/home.jsp?id=151&parentpath=0,3',
+                            info: ''
+                        }
                     ]
                 }
             ],
@@ -154,9 +165,9 @@ export default {
         }
     },
     methods: {
-        onTogleClick(index) {
+        onTogleClick (index) {
             this.nowList = this.menu[index].sub
-            this.menu = this.menu.map((item,i) => {
+            this.menu = this.menu.map((item, i) => {
                 if (i === index) item.isActive = true
                 else item.isActive = false
                 return item
